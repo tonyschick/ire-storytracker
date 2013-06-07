@@ -1,0 +1,24 @@
+[
+{% for p in points %}
+    {
+    "city": "{{ p.city }}", 
+    "year": "{{ p.date.year }}", 
+    "type": "{{ p.type }}", 
+    "host": "{{ p.host }}",
+    "slug": "{{ p.slug }}",
+
+    "stories": [
+    	{% for article in p.article.all %}
+    	{
+	     "headline": "{{ article.headline }}", 
+	     "slug": "{{ article.slug }}"
+    	}{% if not forloop.last %},{% endif %}
+    	{% endfor %}
+    ],
+
+     "lat": "{{ p.lat }}", 
+     "lng": "{{ p.lng }}"
+     }{% if not forloop.last %},{% endif %}
+{% endfor %}
+]
+

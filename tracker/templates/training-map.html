@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- BOOSTRAP  -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="https://dl.dropboxusercontent.com/u/24686053/bootstrap/css/bootstrap-responsive.min.css" />
+        <link rel="stylesheet" type="text/css" href="https://dl.dropboxusercontent.com/u/24686053/bootstrap/css/bootstrap.min.css" />
+        <script src="https://dl.dropboxusercontent.com/u/24686053/bootstrap/js/bootstrap.min.js" > </script>
+                
+        <!-- JQUERY -->
+        <script src="https://dl.dropboxusercontent.com/u/24686053/jquery-1.9.1.min.js" > </script>
+
+        <!-- LEAFLET -->
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+        <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+    
+        <style>
+        body {
+            margin: 50px;
+        }
+        #map {
+            height: 350px;
+            width: 60%;
+            float: left;
+        }
+        </style>
+    </head>
+
+<body>
+
+<div id="map" style="height:400px; width:60%; margin: auto;"></div>
+
+
+
+
+<script type="text/javascript">
+    var activelayers = [];
+
+    function removeMarkers() {
+        for (i=0;i<activelayers.length;i++) {
+            map.removeLayer(activelayers[i]);
+        }
+        activelayers=[];
+    }
+
+    function getPoints(selectObj) {
+        removeMarkers();
+
+        var params = {};
+        if(selectObj) {
+            var idx = selectObj.selectedIndex;
+            var type = selectObj.options[idx].value; 
+            params['type'] = type;
+        }
+
+        var markers = [];
+        $.getJSON('/training/', params, function(data, textStatus, jqXHR) {
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].lat && data[i].lng) {
+                    markers.push(L.marker([data[i].lat, data[i].lng]).bindPopup(
+                        "<b>" + params.city + "City, " + "Year" + "</b>" + "<br />" + "Type" + "<br />" + "<br />" + "<b>" + "Related stories" + "</b>" + "<br />" + "Stories"));
+                }
+                //html += '<div class="item">' + '<a href="' + link + '" target="_blank">' + text + '</a></div>';
+            }
+            var markerLayer = L.layerGroup(markers);
+            map.addLayer(markerLayer);
+            activelayers.push(markerLayer);
+        }); 
+    }
+
+    map = new L.Map('map');
+
+    var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    var osmAttrib='Map data © OpenStreetMap contributors';
+    var osm = new L.TileLayer(osmUrl, {attribution: osmAttrib});       
+
+    map.setView(new L.LatLng(38.972180,-96.316170), 4);
+    map.addLayer(osm);
+
+    getPoints();
+</script>
+
+</body>

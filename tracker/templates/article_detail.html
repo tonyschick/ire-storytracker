@@ -1,0 +1,16 @@
+{% extends "index.html" %}
+
+{% block body %}
+
+<div class="row-fluid">
+
+	<div class="span8 offset2">
+		<h1> {{ article.headline }}</h1>
+		<p> {{ article.organization }} | {{ article.date }} </p>
+		<p> {{ article.description|safe }} </p>
+		<p> IRE's {% for impact in article.impact.all %} <a href="/impacts/{{ impact.slug}}">{{ impact.name|lower }}</a> {% if not forloop.last %} and {% endif %} {% endfor %} contributed to this investigation. <a href="{{ article.hyperlink }}">Read the full article ... </a></p>
+	</div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "index.html" %}
+
+{% block body %}
+
+<div class="row-fluid">
+
+	<div class="span8 offset2">
+		<h1> {{training.type }} in {{ training.city }} </h1>
+		<br />
+		<div class="row-fluid">
+			<div class="span4">
+			<p> Held on {{ training.date.day }}/{{training.date.month}}/{{training.date.year}}, Hosted by {{ training.host }} </p>
+				<div id="map" style="height: 300px; box-shadow: 4px 4px 5px #ccc;">
+
+	                        <script type="text/javascript">
+
+	                            var map = L.map('map').setView([{{training.lat}},{{training.lng}}], 12);
+	                            
+	                            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	                                maxZoom: 18,
+	                                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
+	                            }).addTo(map);
+	                        </script>
+	            </div>
+			</div>
+			<div class="span8">
+				<p class="lead">Stories produced after this training</p>
+				{% for a in training.article.all %}
+				<p><a href="/articles/{{a.slug}}">{{ a.headline }}</a></p>
+				<p>{{ a.description|safe }}
+				<hr />
+				{% endfor %}
+			</div>
+
+
+	</div>
+
+</div>
+
+{% endblock %}

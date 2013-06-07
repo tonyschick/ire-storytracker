@@ -1,0 +1,28 @@
+<!-- ##### IMPACT CATEGORIES ##### -->
+{% extends "index.html" %}
+
+{% block title %} 
+{{ block.super }}
+{% endblock %}
+
+{% block body %}
+
+	<div class="row-fluid">
+	{% block pagetitle %}
+	<div class="span10 offset1 page-header"><h3>Ways IRE has helped journalists ...</h3> </div>
+	</div>
+	<div class="row-fluid offset">
+		{% for i in impacttypes %}
+		<div class="span3">
+			<p class="lead" style="text-align:center;"><a href="{{ i.slug }}">{{ i.name|upper }}</a></p></div>
+		{% endfor %}
+		</div>
+	{% endblock %}
+	
+
+	</div>
+	{% block storylist %}
+	{% endblock %}
+
+{% endblock %}
+

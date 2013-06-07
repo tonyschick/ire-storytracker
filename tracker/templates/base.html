@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+	      body {
+	        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+	      }
+    	</style>
+		<!-- BOOSTRAP  -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="https://dl.dropboxusercontent.com/u/24686053/bootstrap/css/bootstrap-responsive.min.css" />
+		<link rel="stylesheet" type="text/css" href="https://dl.dropboxusercontent.com/u/24686053/bootstrap/css/bootstrap.min.css" />
+		<script src="https://dl.dropboxusercontent.com/u/24686053/bootstrap/js/bootstrap.min.js" > </script>
+				
+		<!-- JQUERY -->
+		<script src="https://dl.dropboxusercontent.com/u/24686053/jquery-1.9.1.min.js" > </script>
+
+		<!-- LEAFLET -->
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+		<script src="http://leafletjs.com/dist/leaflet.js"></script>
+	
+	</head>
+
+	<body>
+
+{% block title %} 
+<h1>Base.html!</h1>
+{% endblock %}	
+
+{% block body %}
+		<div class="container">
+			<p>This is what base.html looks like when you ain't got no code.</p>
+
+		</div>
+	</body>
+{% endblock %}
+</html>

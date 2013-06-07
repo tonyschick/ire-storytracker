@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+
+{% block body %}
+
+<div class="row-fluid">
+
+	<div class="span8 offset2">
+
+		<div id="index-storylist">
+	                {% for a in articles %}
+	                <h4><a href="{{a.hyperlink}}">{{ a.headline }}</a><br />
+	                {{ a.organization }} </h4>
+	                <p>By <em>{{ a.byline}},</em> {{a.date}} </p>
+	                <p>{{ a.description }}<br />
+	                <em>IRE contributed:{% for impact in a.impact.all %} <a href="/impacts/{{ impact.slug }}"> {{ impact.name|lower }}</a>{% if not forloop.last %}, {% endif %} {% endfor %}</em>
+	                </p>
+	                <hr />
+	                {% endfor %}
+	    </div>
+	</div>
+</div>
+
+{% endblock %}

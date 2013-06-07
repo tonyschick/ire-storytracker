@@ -1,0 +1,80 @@
+<!-- ##### TRAINING ##### -->
+{% extends "index.html" %}
+
+{% block title %} 
+{{ block.super }}
+{% endblock %}
+
+{% block body %}
+<div class="row-fluid">
+	<div class="span10 offset1">
+	<div id="map" style="height:400px; width:100%; box-shadow: 4px 4px 5px #ccc;">
+
+                        <script src='/mapjson/'></script>
+                        <script type="text/javascript">
+
+                            var map = L.map('map').setView([38.972180,-96.316170], 3);
+                            
+                            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                maxZoom: 18,
+                                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
+                            }).addTo(map);
+
+                            /* var coordinates = data.features.geometry.coordinates;
+
+                            L.marker([coordinates]).addTo(map);
+
+                            L.geoJson(someFeatures).addTo(map);
+
+                            */
+                            function getPoints(selectObj) {
+                                    removeMarkers();
+                                    var markers = [];
+                                    $.getJSON('/mapjson/', function(data) {
+                                        for (var i = 0; i < data.length; i++) 
+                                            {
+
+                                                
+                                                markers.push(L.marker([data[i].lat, data[i].lng]).bindPopup(
+                                                    "<b>" + data[i].year + ' ' + data[i].type + ' in ' + data[i].city +  '</b>'+ '<br />' +  '<em> Hosted by ' + data[i].host + '</em>' + '<br />' + '<br />' + '<a href="/training/' + data[i].slug + '">' + '<b>' + 'Learn more about this training' + '</a>' + '</b>'));
+                                            
+                                            //html += '<div class="item">' + '<a href="' + link + '" target="_blank">' + text + '</a></div>';
+                                                 
+                                        }
+
+                                        var markerLayer = L.layerGroup(markers);
+                                        map.addLayer(markerLayer);
+                                        activelayers.push(markerLayer);
+                                    }); 
+                                }
+
+                            var activelayers = [];
+
+                            function removeMarkers() {
+                                for (i=0;i<activelayers.length;i++) {
+                                    map.removeLayer(activelayers[i]);
+                                }
+                                activelayers=[];
+                            }
+
+                            getPoints();
+                        </script>
+                    </div>
+	</div>
+</div>
+
+<div class="row-fluid">
+	<div class="offset1">
+	<h1>Our most recent stops</h1>
+	{% for t in training %}
+	<p class="lead"><a href="/training/{{t.slug}}">{{t.city}} {{t.type}}</a></p>
+	<p>Held on {{t.date.day}}/{{t.date.month}}/{{t.date.year}}, hosted by {{t.host}}</p>
+	<hr />
+	{% endfor %}
+	</div>
+</div>
+
+	{% block storylist %}
+	{% endblock %}
+
+{% endblock %}

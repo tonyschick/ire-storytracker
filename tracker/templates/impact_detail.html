@@ -1,0 +1,24 @@
+{% extends "impact.html" %}
+
+
+{% block pagetitle %}
+<div class="span10 offset1 page-header"><h3> {{ impacttype }} <small>Description goes here ...</small></h3></div>
+
+{% endblock %}
+
+
+
+{% block storylist %}
+	
+	<div class="offset1">
+		{% for all in impactlist %}
+		<h4><a href="/articles/{{all.slug}}">{{ all.headline }}</a><br />
+		{{ all.organization }} </h4>
+		{{ all.byline}}, {{all.date}} <br/>
+		{{ all.description }}
+		<br />
+		<br />
+		{% endfor %}
+	</ul>		
+	</div>
+{% endblock %}
