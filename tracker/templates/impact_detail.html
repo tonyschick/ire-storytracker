@@ -2,7 +2,15 @@
 
 
 {% block pagetitle %}
-<div class="span10 offset1 page-header"><h3> {{ impacttype }} <small>Description goes here ...</small></h3></div>
+<div class="span3 offset1">
+		<p><a href="/impacts/"> <b> <<< </b> BACK TO WHAT WE DO</a></p>
+</div>
+<div class="span10 offset1 page-header">
+	<!--img width="250" style="float: left; margin: 10px;" src=" {{ impacttype.image }} " /-->
+	<h3>Investigations aided by IRE's {{ impacttype|lower }} </h3>
+	<p> {{ impacttype.description}} </p>
+</div>
+<div class="row-fluid">
 
 {% endblock %}
 
@@ -15,7 +23,7 @@
 		<h4><a href="/articles/{{all.slug}}">{{ all.headline }}</a><br />
 		{{ all.organization }} </h4>
 		{{ all.byline}}, {{all.date}} <br/>
-		{{ all.description }}
+		{{ all.description|safe }}
 		<br />
 		<br />
 		{% endfor %}
