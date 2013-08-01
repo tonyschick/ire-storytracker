@@ -9,20 +9,23 @@
 
 	<div class="row-fluid">
 	{% block pagetitle %}
-	<div class="span10 offset1 page-header"><h3>Ways IRE has helped journalists ...</h3> </div>
+	<div class="span10 offset1 page-header"><h1>How IRE impacts journalists</h1> </div>
 	</div>
-	<div class="row-fluid offset">
+	
+	<div style="width: 1080px; margin: auto;">
 		{% for i in impacttypes %}
-		<div class="span3">
-			<p class="lead" style="text-align:center;"><a href="{{ i.slug }}">{{ i.name|upper }}</a></p></div>
+		<div style="float: left; width: 250px; margin: 10px;">
+			<a href="{{ i.slug }}"><img width="250" style="margin-bottom: 10px;" src=" {{ i.image }} " /></a>
+			<h3 style="text-align:center;"><a href="{{ i.slug }}">{{ i.name|upper }}</a></h2>
+			<p> {{ i.description }}</p>
+		</div>
 		{% endfor %}
 		</div>
 	{% endblock %}
-	
+
 
 	</div>
 	{% block storylist %}
 	{% endblock %}
 
 {% endblock %}
-

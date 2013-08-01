@@ -24,9 +24,9 @@
 	            </div>
 			</div>
 			<div class="span8">
-				<p class="lead">Stories produced after this training</p>
+				<p class="lead">Stories produced as a result of this training:</p>
 				{% for a in training.article.all %}
-				<p><a href="/articles/{{a.slug}}">{{ a.headline }}</a></p>
+				<h3><a href="/articles/{{a.slug}}">{{ a.headline }}</a></h3>
 				<p>{{ a.description|safe }}
 				<hr />
 				{% endfor %}

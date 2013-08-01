@@ -12,7 +12,8 @@ class Article(models.Model):
 	#If there's really a ulr longer than 255 we'll shorten that shit
 	impact = models.ManyToManyField('Impact')
 	training = models.ManyToManyField('Training', blank=True, null=True, related_name="events+")
-	description = models.TextField()
+	description = models.TextField(help_text="basic html such as hyperlinks OK")
+	image = models.CharField(max_length=200, help_text="this should be an image url, hosted on ire.org dimensions 300x200")
 
 	def __unicode__(self):
 		return '%s | %s' %(self.headline, self.organization)
@@ -23,6 +24,8 @@ class Article(models.Model):
 class Impact(models.Model):
 	name = models.CharField(max_length=20)
 	slug = models.SlugField(max_length=20)
+	description = models.TextField()
+	image = models.CharField(max_length=200, help_text="this should be an image url, hosted on ire.org dimensions 300x200")
 
 	def __unicode__(self):
 		return '%s' %(self.name)

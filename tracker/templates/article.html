@@ -4,20 +4,34 @@
 
 <div class="row-fluid">
 
-	<div class="span8 offset2">
+		<div class="row-fluid">
+		<div class="span10 offset1 page-header"><h1>IRE-powered investigations</h1> </div>
+		</div>
 
 		<div id="index-storylist">
-	                {% for a in articles %}
-	                <h4><a href="{{a.hyperlink}}">{{ a.headline }}</a><br />
+					
+	                
+	            {% for a in articles %}
+	            <div class="row-fluid">
+	                <div class="span2 offset1" style="height: 125px; overflow: hidden;">
+	                {% if a.image %}
+	                <img style="margin-top: 20px;" src=" {{ a.image }} ">
+	                {% endif %}
+	                </div>
+
+	                <div class="span6">
+	                <h4><a href="/articles/{{ a.slug }}">{{ a.headline }}</a><br />
 	                {{ a.organization }} </h4>
 	                <p>By <em>{{ a.byline}},</em> {{a.date}} </p>
 	                <p>{{ a.description|safe }}<br />
 	                <em>IRE contributed:{% for impact in a.impact.all %} <a href="/impacts/{{ impact.slug }}"> {{ impact.name|lower }}</a>{% if not forloop.last %}, {% endif %} {% endfor %}</em>
 	                </p>
 	                <hr />
-	                {% endfor %}
+	            	</div>
+	            </div>
+	            {% endfor %}
+	               
 	    </div>
-	</div>
 </div>
 
 {% endblock %}
