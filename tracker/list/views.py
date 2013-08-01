@@ -11,7 +11,7 @@ storytotal = Article.objects.aggregate(story_total=Count('headline'))
 
 def index(request):
 
-	articles = Article.objects.all().order_by('-date')
+	articles = Article.objects.all().order_by('-date')[:3]
 
 	workshops = Training.objects.all()
 

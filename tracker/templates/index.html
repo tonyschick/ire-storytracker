@@ -3,6 +3,7 @@
 {% block title %} 
 <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
+        <a href="http://ire.org"><img width="140" style="float: left; margin-top: 2px; margin-left: 2px; margin-right: 40px;" src="http://ire.org/media/images/irelogo.png" /></a>
         <div class="container">
             <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                 <span class="icon-bar"></span>
@@ -12,11 +13,11 @@
             </button>
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                    <li><a class="brand" href="/">IRE impact tracker</a></li>
-                    <li><a href="/training/">Our training</a></li>
-                    <li><a href="/impacts/">How we impact stories</a></li>
-                    <li><a href="/articles/">Articles we've assisted</a></li>
-                    <li><a href="/share/">Share a story</a></li>
+                    <li class="active"><a class="brand" href="/">Powering investigations</a></li>
+                    <li><a href="/impacts/">What we do</a></li>
+                    <li><a href="/training/">Where we train</a></li>
+                    <li><a href="/articles/">IRE powered stories</a></li>
+                    <li><a href="/share/">Share with us</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -33,24 +34,23 @@
 
     <div class="row-fluid">
         <div class="span10 offset1">
-            <p class="lead">IRE's training, data analysis services and open-source tools such as DocumentCloud have contributed to hard-hitting journalism around the world.</p>
+            <p class="lead">IRE's training and tools have contributed to hard-hitting journalism around the world. Take a look at where IRE has trained in the past five years and what stories have resulted.</p>
         </div>
     </div>
 
     <div class="row-fluid">
                 <div class="span6 offset1">
                     <div class="page-header">
-                        <h3>Training map</h3>
-                        <p>Click on an icon to see details of the training... </p>
+                        <h3>Training across the country</h3>
+                        <p>Drag or zoom to see locations in your community or abroad. Click on an icon for details.</p>
                     </div>
                     <div id="map" style="height:400px; width:100%; box-shadow: 4px 4px 5px #ccc;">
 
                         <script src='/mapjson/'></script>
                         <script type="text/javascript">
 
-                            var map = L.map('map').setView([38.972180,-96.316170], 3);
-                            
-                            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            var map = L.map('map').setView([38.972180,-96.316170], 3);                        
+                            L.tileLayer('http://a.tiles.mapbox.com/v3/tonyschick.map-q6ln6vva/{z}/{x}/{y}.png', {
                                 maxZoom: 18,
                                 attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
                             }).addTo(map);
@@ -95,13 +95,15 @@
                             getPoints();
                         </script>
                     </div>
+                    <div class="span 6 offset 1">
+                    </div> 
 
                 </div>
                 
                 <div class="span4">
                     <div class="page-header">
                         <h3>Latest articles</h3>
-                        <p>Recent investigative stories that IRE made possible.</p>
+                        <p>Recent work made possible by IRE. <a href="/articles/">View all...</a></p>
                     </div>
                     <div id="index-storylist">
                                 {% for a in articles %}
@@ -113,7 +115,8 @@
                                 </p>
                                 <hr />
                                 {% endfor %}
-                            </ul>       
+                            </ul>
+                            <p style="text-align: center;"> — <a href="/articles/">VIEW ALL ARTICLES</a> — </p>       
                     </div>
                 </div>
 
