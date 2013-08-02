@@ -52,7 +52,7 @@ def article_detail(request, slug):
 
 def training_index(request):
 
-    training = Training.objects.all()
+    training = Training.objects.all().order_by('-date')
 
     return render_to_response('training.html', {'training': training})
 

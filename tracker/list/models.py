@@ -33,6 +33,7 @@ class Impact(models.Model):
 class Training(models.Model):
 	slug = models.SlugField(max_length=30, help_text="Automatically generated, don't touch unless need to")
 	type = models.ForeignKey('TrainingType')
+	eventnumber = models.IntegerField(blank=True, null=True)
 	date = models.DateTimeField(blank=True, null=True)
 	city = models.CharField(max_length=50, help_text="Use AP style. For example, 'Portland, Ore.'")
 	lat = models.CharField(max_length=10, blank=True)

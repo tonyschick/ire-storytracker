@@ -62,14 +62,19 @@
                             L.geoJson(someFeatures).addTo(map);
 
                             */
+
                             function getPoints(selectObj) {
                                     removeMarkers();
+                                     var blackicon = L.icon( {
+                                        iconUrl: 'https://dl.dropboxusercontent.com/u/24686053/black-icon.png',
+                                    });
                                     var markers = [];
                                     $.getJSON('/mapjson/', function(data) {
                                         for (var i = 0; i < data.length; i++) 
                                             {
 
-                                                
+                           
+
                                                 markers.push(L.marker([data[i].lat, data[i].lng]).bindPopup(
                                                     "<b>" + data[i].year + ' ' + data[i].type + ' in ' + data[i].city +  '</b>'+ '<br />' +  '<em> Hosted by ' + data[i].host + '</em>' + '<br />' + '<br />' + '<a href="/training/' + data[i].slug + '">' + '<b>' + 'Learn more about this training' + '</a>' + '</b>'));
                                             

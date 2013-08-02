@@ -11,7 +11,7 @@ class ImpactAdmin(admin.ModelAdmin):
 admin.site.register(Impact, ImpactAdmin)
 
 class TrainingAdmin(admin.ModelAdmin):
-	prepopulated_fields = {"slug": ("city", "type",)}
+	prepopulated_fields = {"slug": ("city", "eventnumber",)}
 admin.site.register(Training, TrainingAdmin)
 
 class TrainingTypeAdmin(admin.ModelAdmin):

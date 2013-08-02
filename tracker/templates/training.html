@@ -67,7 +67,7 @@
 	<div class="offset1">
 	<h1>Our most recent stops</h1>
 	{% for t in training %}
-	<p class="lead"><a href="/training/{{t.slug}}">{{t.city}} {{t.type}}</a></p>
+	<p class="lead"><a href="/training/{{t.slug}}">{{t.city}}: {{t.type}}</a></p>
 	<p>Held on {{t.date.day}}/{{t.date.month}}/{{t.date.year}}, hosted by {{t.host}}</p>
 	<hr />
 	{% endfor %}
