@@ -1,5 +1,5 @@
 <!-- ##### IMPACT CATEGORIES ##### -->
-{% extends "index.html" %}
+{% extends "base.html" %}
 
 {% block title %} 
 {{ block.super }}
@@ -7,16 +7,18 @@
 
 {% block body %}
 
-	<div class="row-fluid">
 	{% block pagetitle %}
-	<div class="span10 offset1 page-header"><h1>How IRE impacts journalists</h1> </div>
-	</div>
-	
+	<br />
+	<br />
+	<br />
+<div class="row-fluid">
+	<div class="offset1 span10 page-header"><h1>How IRE directly impacts investigations</h1></div>
+</div>
 	<div style="width: 1080px; margin: auto;">
 		{% for i in impacttypes %}
 		<div style="float: left; width: 250px; margin: 10px;">
 			<a href="{{ i.slug }}"><img width="250" style="margin-bottom: 10px;" src=" {{ i.image }} " /></a>
-			<h3 style="text-align:center;"><a href="{{ i.slug }}">{{ i.name|upper }}</a></h2>
+			<h3><a href="{{ i.slug }}">{{ i.name }}</a></h2>
 			<p> {{ i.description }}</p>
 		</div>
 		{% endfor %}

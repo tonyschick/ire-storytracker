@@ -4,18 +4,21 @@ from django.db.models import Count
 from django.shortcuts import render_to_response, get_object_or_404
 from tracker.list.models import Article, Impact, Training, TrainingType
 
-trainingtotal = Training.objects.aggregate(sum=Sum('attendance'))
+attendancetotal = Training.objects.aggregate(attendance_total=Sum('attendance'))
 
-storytotal = Article.objects.aggregate(story_total=Count('headline'))
+storytotal = Article.objects.aggregate(story_total=Count('slug'))
 
+trainingtotal = Training.objects.aggregate(training_total=Count('eventnumber'))
+
+citytotal = Training.objects.aggregate(city_total=Count('city'))
 
 def index(request):
 
 	articles = Article.objects.all().order_by('-date')[:3]
 
-	workshops = Training.objects.all()
+	training = Training.objects.all().order_by('-date')[:5]
 
-	return render_to_response('index.html', {'articles': articles, 'workshops': workshops, 'trainingtotal': trainingtotal['sum'], 'storytotal': storytotal['story_total']})
+	return render_to_response('index.html', {'articles': articles, 'training': training, 'attendancetotal': attendancetotal['attendance_total'], 'storytotal': storytotal['story_total'], 'trainingtotal': trainingtotal['training_total'], 'citytotal': citytotal['city_total']})
 
 def impact_list(request):
 	#View for all impact types
@@ -52,9 +55,11 @@ def article_detail(request, slug):
 
 def training_index(request):
 
-    training = Training.objects.all().order_by('-date')
+    training = Training.objects.all().order_by('-date')[:5]
 
-    return render_to_response('training.html', {'training': training})
+    training_long = Training.objects.all()
+
+    return render_to_response('training.html', {'training': training, 'training_long': training_long})
 
 def training_detail(request, slug):
 
@@ -68,11 +73,7 @@ def training_detail(request, slug):
 def share(request):
     return render_to_response('share.html')
 
-
-
-
     #View for article detail will go here
-
 
 
 def map_api(request):

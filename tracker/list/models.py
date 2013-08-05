@@ -13,7 +13,7 @@ class Article(models.Model):
 	impact = models.ManyToManyField('Impact')
 	training = models.ManyToManyField('Training', blank=True, null=True, related_name="events+")
 	description = models.TextField(help_text="basic html such as hyperlinks OK")
-	image = models.CharField(max_length=200, help_text="this should be an image url, hosted on ire.org dimensions 300x200")
+	image = models.CharField(blank=True, null=True, max_length=200, help_text="this should be an image url, hosted on ire.org dimensions 300x200")
 
 	def __unicode__(self):
 		return '%s | %s' %(self.headline, self.organization)
@@ -48,7 +48,7 @@ class Training(models.Model):
 		return '%s %s | %s/%s/%s' %(self.city, self.type, self.date.day, self.date.month, self.date.year,)
 
 class TrainingType(models.Model):
-	name = models.CharField(max_length=20)
+	name = models.CharField(max_length=30)
 	slug = models.SlugField(max_length=20)
 	
 	def __unicode__(self):

@@ -1,7 +1,9 @@
-{% extends "index.html" %}
+{% extends "base.html" %}
 
 {% block body %}
-
+<br />
+<br />
+<br />
 <div class="row-fluid">
 	<div class="span2 offset1">
 		<p><a href="/training/"> <b> <<< </b> BACK TO TRAINING</a></p>
@@ -9,10 +11,10 @@
 
 	<div class="span8 offset2">
 		<h1> {{training.type }} in {{ training.city }} </h1>
+		<p class="lead"> Held on {{ training.date.day }}/{{training.date.month}}/{{training.date.year}}, Hosted by {{ training.host }} </p>
 		<br />
 		<div class="row-fluid">
 			<div class="span4">
-			<p> Held on {{ training.date.day }}/{{training.date.month}}/{{training.date.year}}, Hosted by {{ training.host }} </p>
 				<div id="map" style="height: 300px; box-shadow: 4px 4px 5px #ccc;">
 
 	                        <script type="text/javascript">
@@ -27,7 +29,7 @@
 	            </div>
 			</div>
 			<div class="span8">
-				<p class="lead">Stories produced as a result of this training:</p>
+				<h1><small>Stories from this training:</small></h1>
 				{% for a in training.article.all %}
 				<h3><a href="/articles/{{a.slug}}">{{ a.headline }}</a></h3>
 				<p>{{ a.description|safe }}

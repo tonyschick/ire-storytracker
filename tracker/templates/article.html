@@ -1,12 +1,13 @@
-{% extends "index.html" %}
+{% extends "base.html" %}
 
 {% block body %}
 
+	<br />
+	<br />
+	<br />
 <div class="row-fluid">
-
-		<div class="row-fluid">
-		<div class="span10 offset1 page-header"><h1>IRE-powered investigations</h1> </div>
-		</div>
+	<div class="offset1 span10 page-header"><h1>Investigations aided by IRE</h1></div>
+</div>
 
 		<div id="index-storylist">
 					
@@ -20,9 +21,8 @@
 	                </div>
 
 	                <div class="span6">
-	                <h4><a href="/articles/{{ a.slug }}">{{ a.headline }}</a><br />
-	                {{ a.organization }} </h4>
-	                <p>By <em>{{ a.byline}},</em> {{a.date}} </p>
+	                <h4>{{ a.organization }}<br /><a href="/articles/{{ a.slug }}">{{ a.headline }}</a> </h4>
+	                <p>{{a.date|date:"M"}}. {{a.date.day}}, {{a.date.year}} | By <em>{{ a.byline}}</em></p>
 	                <p>{{ a.description|safe }}<br />
 	                <em>IRE contributed:{% for impact in a.impact.all %} <a href="/impacts/{{ impact.slug }}"> {{ impact.name|lower }}</a>{% if not forloop.last %}, {% endif %} {% endfor %}</em>
 	                </p>
