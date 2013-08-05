@@ -4,7 +4,7 @@
 {% block title %} 
 <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
-        <a name="top" href="http://ire.org"><img width="140" style="float: left; margin-top: 2px; margin-left: 3px; margin-right: 40px;" src="http://ire.org/media/images/irelogo.png" /></a>
+        <a href="http://ire.org"><img width="140" style="float: left; margin-top: 2px; margin-left: 3px; margin-right: 40px;" src="http://ire.org/media/images/irelogo.png" /></a>
         <div class="container">
             <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                 <span class="icon-bar"></span>
@@ -13,8 +13,8 @@
                 <span class="icon-bar"></span>
             </button>
             <div id="mapview" class="nav-collapse collapse">
-                <ul id="top" class="nav">
-                    <li class="active"><a class="brand" href="/">Powering investigations</a></li>
+                <ul class="nav">
+                    <li><a class="brand" href="/">Powering investigations</a></li>
                     <li><a href="/impacts/">What we do</a></li>
                     <li><a href="/training/">Where we train</a></li>
                     <li><a href="/articles/">Stories we aided</a></li>
@@ -25,8 +25,8 @@
         </div>
       </div>
 <div class="row-fluid">
-    <div class="offset10 btn"><a href="#list">list view</a></div>
-    <div class="btn"><a href="#map">map view</a></div>
+    <div class="offset10 btn"><a href="#listview">list view</a></div>
+    <div class="btn"><a href="/training/">map view</a></div>
 </div>
 </div>
 
@@ -34,7 +34,7 @@
 {% block body %}
 <!--div class="row-fluid">
 	<div class="span9"-->
-	<div id="map" style="height: 100%; clear:both; margin-top: 40px; width:100%; box-shadow: 4px 4px 5px #ccc;">
+    <div id="map" style="margin-top: 40px; height: 100%; width:100%; box-shadow: 4px 4px 5px #ccc;">
 
                         <script src='/mapjson/'></script>
                         <script type="text/javascript">
@@ -124,8 +124,8 @@
             } );
 </script>
 
-<div class="span12 offset1" style="height: 90%; margin-top: 40px;">
-    <h1>Search IRE's events</h1>
+<div class="span10 offset1" style="height: 90%; margin-top: 40px;">
+    <h1 id="listview" style="padding: 40px; margin-top: 40px;">Search IRE's events</h1>
     <table cellpadding="0" cellspacing="0" border="0" class="display" id="list" width="100%">
         <thead>
             <tr>
