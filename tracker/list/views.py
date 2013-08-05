@@ -34,7 +34,7 @@ def impact_detail(request, slug):
 
 	impactcategories = Impact.objects.all().order_by('name')
 
-	impactlist = impacttype.article_set.all().order_by('date')
+	impactlist = impacttype.article_set.all().order_by('-date')
 
 	return render_to_response('impact_detail.html', {'impacttype': impacttype, 'impactlist': impactlist, 'impactcategories': impactcategories})
 
