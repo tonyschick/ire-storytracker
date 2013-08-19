@@ -25,8 +25,8 @@
         </div>
       </div>
 <div class="row-fluid">
-    <div class="offset10 btn"><a href="#listview">list view</a></div>
-    <div class="btn"><a href="/training/">map view</a></div>
+    <div class="offset5 btn"><a href="#listview">list view</a></div>
+    <div class="btn"><a href="#map">map view</a></div>
 </div>
 </div>
 
@@ -34,7 +34,7 @@
 {% block body %}
 <!--div class="row-fluid">
 	<div class="span9"-->
-    <div id="map" style="margin-top: 40px; height: 100%; width:100%; box-shadow: 4px 4px 5px #ccc;">
+    <div id="map" style="margin-top: 40px; padding-top: -40px; height: 100%; width:100%; box-shadow: 4px 4px 5px #ccc;">
 
                         <script src='/mapjson/'></script>
                         <script type="text/javascript">
@@ -96,7 +96,7 @@
 
                                 var div = L.DomUtil.create('div', 'info legend')
                                     div.innerHTML +=
-                                        ('<h3 style="font-family: Georgia;">IRE training</h3>' + '<p style="font-family: Georgia;">One of the primary purposes of IRE is educating fellow journalists in the latest techniques of finding, understanding and reporting on stories. We are proud to say we have crisscrossed the country with our seminars and workshops and have even reached overseas.</p>' + '<h4 style="font-family: Georgia;">Latest stops</h4>'{% for t in training %} + '<p style="font-family: Georgia;">{{t.date.day}}/{{t.date.month}}/{{t.date.year}}' + '<br />' + '<a href="/training/{{t.slug}}">{{t.type}} in {{t.city}} </a></p>'{% endfor %});
+                                        ('<h3 style="font-family: Georgia;">IRE training</h3>' + '<p style="font-family: Georgia;">One of the primary purposes of IRE is educating fellow journalists in the latest techniques of finding, understanding and reporting on stories. We are proud to say we have crisscrossed the country with our seminars and workshops and have even reached overseas.</p>' + '<h4 style="font-family: Georgia;">Latest stops</h4>'{% for t in training %} + '<p style="font-family: Georgia;">{{t.date.month}}/{{t.date.day}}/{{t.date.year}}' + '<br />' + '<a href="/training/{{t.slug}}">{{t.type}} in {{t.city}} </a></p>'{% endfor %});
                                     
                                 return div;
                             };
