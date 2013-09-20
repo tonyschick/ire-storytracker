@@ -50,6 +50,7 @@ class Training(models.Model):
 class TrainingType(models.Model):
 	name = models.CharField(max_length=30)
 	slug = models.SlugField(max_length=20)
+	description = models.TextField()
 	
 	def __unicode__(self):
 		return '%s' %(self.name)

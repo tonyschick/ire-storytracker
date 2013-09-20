@@ -72,14 +72,19 @@
 	</head>
 
 	<body>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+		
 		<script>
-			    jQuery(document).ready(function($) {
-		    $("li.dropdown a").click(function(e){
-		        $(this).next('ul.dropdown-menu').css("display", "block");
-		        e.stopPropagation();
-		        });
-		});
+    	$('#collapse').collapse()
 		</script>
+		
 		{% block title %}
 		<div class="navbar navbar-inverse navbar-fixed-top">
 		      <div class="navbar-inner">
@@ -91,7 +96,7 @@
 		                <span class="icon-bar"></span>
 		                <span class="icon-bar"></span>
 		            </button>
-		            <div class="nav-collapse collapse">
+		            <div class="nav-collapse collapse" id="collapse">
 		                <ul class="nav">
 		                    <li><a id="home" class="brand" href="/">Powering investigations</a></li>
 		                    <li><a id="impacts" href="/impacts/">What we do</a></li>

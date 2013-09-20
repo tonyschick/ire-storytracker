@@ -3,6 +3,10 @@ from django.db.models import Sum
 from django.db.models import Count
 from django.shortcuts import render_to_response, get_object_or_404
 from tracker.list.models import Article, Impact, Training, TrainingType
+from tracker.list.forms import ContactForm
+from django.template import RequestContext
+from django.core.mail import send_mail
+from django.http import HttpResponseRedirect
 
 attendancetotal = Training.objects.aggregate(attendance_total=Sum('attendance'))
 
@@ -67,14 +71,33 @@ def training_detail(request, slug):
 
     training=Training.objects.get(slug=slug)
 
-    return render_to_response('training_detail.html', {'training_detail': training_detail, 'training': training})
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            message = 'Event' + '\n' + training.city + ' ' + training.type.name + ' - %s/%s/%s' %(training.date.month, training.date.day, training.date.year) + '\n' + '\n' + 'Headline:' + '\n' + cd['headline'] + '\n' + '\n' + 'Hyperlink:' + '\n' + cd['hyperlink'] + '\n' + '\n' + 'Byline:' + '\n' + cd['byline'] + '\n' + '\n' + 'Story summary:' + '\n' + cd['story_summary']
+            send_mail('Proposed story for IRE story tracker', message, cd['email'], ['tony@ire.org'])
+            return HttpResponseRedirect('/thanks/')
+    else:
+        form = ContactForm()
 
+    return render_to_response('training_detail.html', {'training_detail': training_detail, 'training': training, 'form': form}, context_instance = RequestContext(request))
 
-def share(request):
-    return render_to_response('share.html')
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            message = 'Event' + '\n' + training + '\n' + '\n' + 'Headline:' + '\n' + cd['headline'] + '\n' + '\n' + 'Hyperlink:' + '\n' + cd['hyperlink'] + '\n' + '\n' + 'Byline:' + '\n' + cd['byline'] + '\n' + '\n' + 'Story summary:' + '\n' + cd['story_summary']
+            send_mail('Proposed story for IRE story tracker', message, cd['email'], ['tony@ire.org'])
+            return HttpResponseRedirect('/thanks/')
+    else:
+        form = ContactForm()
+    return render_to_response('contact_form.html', {'form': form}, context_instance = RequestContext(request))
 
-    #View for article detail will go here
+def thanks(request):
 
+    return render_to_response('thanks.html')
 
 def map_api(request):
 
