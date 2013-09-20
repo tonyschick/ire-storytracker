@@ -21,7 +21,8 @@
   });
 </script>
 
-<h1>Share the work you produced because of this training</h1>
+<h2>Share your work with IRE</h2>
+<p class="lead">Let us know about an investigation we helped make possible</p>
 
 {% if form.errors %}
 
@@ -31,7 +32,7 @@ Please correct the error{{ form.errors|pluralize }} below.
 
 {% endif %}
 
-<form class="well" action="" method="post">{% csrf_token %}
+<form class="well btn-inverse" action="" method="post">{% csrf_token %}
 
 
 
@@ -40,37 +41,37 @@ Please correct the error{{ form.errors|pluralize }} below.
 
 						<div class="span8">
 							<div class="row-fluid">
-								<div class="span2">
+								<div class="span3">
 									<label ><b>Event Type</b></label>
 									{{ form.eventtype }}
 								</div>
 
-								<div class="span2 offset6">
+								<div class="span3 offset6">
 									<label><b>Event Date</b></label>
 									{{ form.event_date }}
 								</div>
 							</div>
 
 							<div class="row-fluid">
-								<div class="span2">
+								<div class="span3">
 									<label ><b>Headline</b></label>
 									{{ form.headline }}
 								</div>
 
-								<div class="span2 offset6">
+								<div class="span3 offset6">
 									<label><b>Hyperlink</b></label>
 									{{ form.hyperlink }}
 								</div>
 							</div>
 
 							<div class="row-fluid">
-								<div class="span2">
+								<div class="span3">
 
 									<label><b>Publication date</b></label>
 									{{ form.pub_date }}
 								</div>
 
-								<div class="span2 offset6">
+								<div class="span3 offset6">
 									<label><b>Byline</b></label>
 									{{ form.byline }}
 								</div>
