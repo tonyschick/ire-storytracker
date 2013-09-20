@@ -143,7 +143,6 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'django.contrib.humanize',
     'tracker.list',
-    'south'
 )
 
 
