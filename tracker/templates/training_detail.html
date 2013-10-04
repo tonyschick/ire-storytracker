@@ -47,15 +47,14 @@
 
 			</div>
 			<div class="span8">
-				
-				{% for a in training.article.all %}
+				{% if articlelist %}
 				<h2><small>Stories from this event</small></h2>
-				<h3><a href="/articles/{{a.slug}}">{{ a.headline }}</a></h3>
-				<p>{{ a.description|safe }}
-				<hr />
-				{% empty %}
-				
-				{% endfor %}
+					{% for all in articlelist %}				
+					<h3><a href="/articles/{{a.slug}}">{{ all.headline }}</a></h3>
+					<p>{{ all.description|safe }}
+					<hr />
+					{% endfor %}
+				{% endif %}
 				<h1><small>Were you at this event?</small></h1>
 				<h4>Share the work you produced because of this training</h4>
 				{% if form.errors %}
@@ -113,7 +112,7 @@
 						</div>
 
 				</div>
-					<input type="submit" value="Submit" class="btn btn-primary btn-large">
+					<input type="submit" value="Submit" class="btn btn-primary">
 
 				</form>
 

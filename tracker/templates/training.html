@@ -71,6 +71,8 @@
                                         var markerLayer = L.layerGroup(markers);
                                         map.addLayer(markerLayer);
                                         activelayers.push(markerLayer);
+
+                                        L.conrol.layers(markers).addTo(map);
                                     }); 
                                 }
 
@@ -91,12 +93,14 @@
 
                                 var div = L.DomUtil.create('div', 'info legend')
                                     div.innerHTML +=
-                                        ('<h3 style="font-family: Georgia;">IRE training</h3>' + '<p style="font-family: Georgia;">One of the primary purposes of IRE is educating fellow journalists in the latest techniques of finding, understanding and reporting on stories. We are proud to say we have crisscrossed the country with our seminars and workshops and have even reached overseas.</p>' + '<h4 style="font-family: Georgia;">Latest stops</h4>'{% for t in training %} + '<p style="font-family: Georgia;">{{t.date.month}}/{{t.date.day}}/{{t.date.year}}' + '<br />' + '<a href="/training/{{t.slug}}">{{t.type}} in {{t.city}} </a></p>'{% endfor %});
+                                        ('<h3 style="font-family: Georgia;">IRE training</h3>' + '<p style="font-family: Georgia;">One of the primary purposes of IRE is educating fellow journalists in the latest techniques of finding, understanding and reporting on stories. We are proud to say we have crisscrossed the country with our seminars and workshops and have even reached overseas.</p>'/* + '<h4 style="font-family: Georgia;">Latest stops</h4>'{% for t in training %} + '<p style="font-family: Georgia;">{{t.date.month}}/{{t.date.day}}/{{t.date.year}}' + '<br />' + '<a href="/training/{{t.slug}}">{{t.type}} in {{t.city}} </a></p>'{% endfor %} */ );
                                     
                                 return div;
                             };
 
                             legend.addTo(map);
+
+
 
                         </script>
     </div>

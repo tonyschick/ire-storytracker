@@ -63,13 +63,16 @@ def training_index(request):
 
     training_long = Training.objects.all()
 
+
     return render_to_response('training.html', {'training': training, 'training_long': training_long})
 
 def training_detail(request, slug):
 
     training_detail=get_object_or_404(Training, slug=slug)
 
-    training=Training.objects.get(slug=slug)
+    training = Training.objects.get(slug=slug)
+
+    articlelist = training_detail.article_set.all().order_by('-date')
 
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -81,7 +84,7 @@ def training_detail(request, slug):
     else:
         form = ContactForm()
 
-    return render_to_response('training_detail.html', {'training_detail': training_detail, 'training': training, 'form': form}, context_instance = RequestContext(request))
+    return render_to_response('training_detail.html', {'training_detail': training_detail, 'training': training, 'articlelist': articlelist, 'form': form}, context_instance = RequestContext(request))
 
 def contact(request):
     if request.method == 'POST':
