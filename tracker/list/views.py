@@ -91,7 +91,7 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            message = 'Event' + '\n' + cd['event_type'].name + ' ' + '%s/%s/%s' %(cd['event_date'].month, cd['event_date'].day, cd['event_date'].year) + '\n' + '\n' + 'Headline:' + '\n' + cd['headline'] + '\n' + '\n' + 'Hyperlink:' + '\n' + cd['hyperlink'] + '\n' + '\n' + 'Byline:' + '\n' + cd['byline'] + '\n' + '\n' + 'Story summary:' + '\n' + cd['story_summary']
+            message = 'Event' + '\n' + cd['event_type'] + ' ' + '%s/%s/%s' %(cd['event_date'].month, cd['event_date'].day, cd['event_date'].year) + '\n' + '\n' + 'Headline:' + '\n' + cd['headline'] + '\n' + '\n' + 'Hyperlink:' + '\n' + cd['hyperlink'] + '\n' + '\n' + 'Byline:' + '\n' + cd['byline'] + '\n' + '\n' + 'Story summary:' + '\n' + cd['story_summary']
             send_mail('Proposed story for IRE story tracker', message, cd['email'], ['tony@ire.org'])
             return HttpResponseRedirect('/thanks/')
     else:

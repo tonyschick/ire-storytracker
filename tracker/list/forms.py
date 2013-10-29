@@ -1,8 +1,19 @@
 from tracker.list.models import Article, Impact, Training, TrainingType
 from django import forms
 
+EVENT_TYPE_CHOICES = (
+(1, 'Watchdog Workshop'),
+(2, 'Total Newsroom Training'),
+(3, 'CAR Boot Camp'),
+(4, 'Mapping Boot Camp'),
+(5, 'CAR Conference'),
+(6, 'IRE Conference'),
+(7, 'Custom training'),
+(8, 'None'),
+)
+
 class ContactForm(forms.Form):
-	event_type = forms.ModelChoiceField(queryset=TrainingType.objects.all().order_by('name'), required=False)
+	event_type = forms.ModelChoiceField(choices=COMPETITION_TYPE_CHOICES, required=False, blank=True)
 	email = forms.EmailField(required=False)
 	byline = forms.CharField(required=False)
 	headline = forms.CharField(required=False)
