@@ -13,7 +13,7 @@ EVENT_TYPE_CHOICES = (
 )
 
 class ContactForm(forms.Form):
-	event_type = forms.ModelChoiceField(choices=EVENT_TYPE_CHOICES, required=False, blank=True)
+	event_type = forms.ModelChoiceField(choices=EVENT_TYPE_CHOICES, required=False)
 	email = forms.EmailField(required=False)
 	byline = forms.CharField(required=False)
 	headline = forms.CharField(required=False)
