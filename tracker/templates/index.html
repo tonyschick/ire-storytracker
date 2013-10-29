@@ -94,7 +94,7 @@
                         {{t.date.month}}/{{t.date.day}}/{{t.date.year}}<br />
                         <p><a href="/training/{{t.slug}}">{{t.type}} in {{t.city}} </a></p>
                         
-                        <hr />
+                        {% if not forloop.last %}<hr />{% endif %}
                         {% endfor %}
 
                         
@@ -120,7 +120,7 @@
                                 <p>{{ a.description|safe }}<br />
                                 <em><small>IRE contributed:{% for impact in a.impact.all %} <a href="/impacts/{{ impact.slug }}"> {{ impact.name|lower }}</a>{% if not forloop.last %}, {% endif %} {% endfor %}</em></small>
                                 </p>
-                                <hr />
+                                {% if not forloop.last %}<hr />{% endif %}
                                 {% endfor %}
                             </ul>
                             <p style="text-align: center;"> — <a href="/articles/">VIEW ALL ARTICLES</a> — </p>       
