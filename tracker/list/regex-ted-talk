@@ -1,0 +1,61 @@
+REGULAR EXPRESSIONS
+===================
+
+Pattern matching in text. Helpful in:
+- Text editors
+- SQL
+- Programming languages
+- Shell scripting
+- Data cleaning
+
+Flavors of RegEx:
+- Unix: Found in unix and in SQL
+
+- Perl Compatible (PCRE): Used in programming languages, also used in SublimeText
+
+- Random: Found in text editors
+
+
+Examples:
+
+"/RegExp?/i" will find everything within that matches regexp in a non-case sensitive fashion. The 'i' means insensitive. Matches:
+
+	rEgExp
+	REGex
+	regexp
+	regex
+
+Normally regular rexpressions are case sensitive. The reg ex engine you are using will have a method of specifying senstivie or insensitive.
+
+The regular expression goes in between the bars. Modifier comes after.
+
+| == or
+Example: /this|that/
+
+() ==  grouping
+Example: /th(is|at)/
+
+[] == character sets
+Example: /[aeiou]/ for finding vowels, using abbreviation can do things like /[a-z]/ matching anything from a-z in ascii. If you do [A-z], can match anything in a character. /[tT]hat/ will match that with upper case or lower case t.
+
+{} == counting things, can specify things in a range
+Example: /[Aa]{3}+rgh/ will match exactly 3 a's before rgh
+
+? == 0 or 1
+Example: /an?/ will match any article an. Can use with parentheses, so 
+
+* == kleene, 0 or more
+Example: /aa*rgh/
+
++
+Example: /[Aa]+rgh/
+
+\ == precedes escape characters
+Examples: \n is a new line, \. means a literal period, and not the . that means any character. 
+
+$
+
+. == any character, like a character class but with all the characters in it
+Example: /.*/ grabs everything
+
+

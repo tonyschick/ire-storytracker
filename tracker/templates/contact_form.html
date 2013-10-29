@@ -21,18 +21,39 @@
   });
 </script>
 
+<!-- AddThis Button BEGIN -->
+				<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+				<a class="addthis_button_facebook"></a>
+				<a class="addthis_button_twitter"></a>
+				<a class="addthis_button_pinterest_share"></a>
+				<a class="addthis_button_google_plusone_share"></a>
+				<a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+				</div>
+				<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-5230dc3334335a47"></script>
+<!-- AddThis Button END -->
 <h2>Share your work with IRE</h2>
 <p class="lead">Let us know about an investigation we helped make possible</p>
 
 {% if form.errors %}
 
 <p style="color: red;">
-Please correct the error{{ form.errors|pluralize }} below.
+Please correct the error{{ form.errors|pluralize }} below:
 </p>
+<ul>
 
+<p style="color: red;">{{ form.event_type.errors.as_text }}</p>
+<p style="color: red;">{{ form.email.errors.as_text }}</p>
+<p style="color: red;">{{ form.byline.errors.as_text }}</p>
+<p style="color: red;">{{ form.headline.errors.as_text }}</p>
+<p style="color: red;">{{ form.hyperlink.errors.as_text }}</p>
+<p style="color: red;">{{ form.pub_date.errors.as_text }}</p>
+<p style="color: red;">{{ form.event_date.errors.as_text }}</p>
+<p style="color: red;">{{ form.story_summary.errors.as_text }}</p>
+
+</ul>
 {% endif %}
 
-<form class="well btn-inverse" action="" method="post">{% csrf_token %}
+<form action="" method="post">{% csrf_token %}
 
 
 

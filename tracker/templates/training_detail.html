@@ -11,7 +11,7 @@
 </div>
 <div class="row-fluid">
 	<div class="span8 offset2">
-		<h2><small> Held on {{training.date.month}}/{{ training.date.day }}/{{training.date.year}}, Hosted by {{ training.host }} </small></h2>
+		<h2><small> Held on {{training.date.month}}/{{ training.date.day }}/{{training.date.year}}{% if host %}, Hosted by {{ training.host }} {% else %}{% endif %}</small></h2>
 		<h1> {{training.type }} in {{ training.city }} </h1>
 		<br />
 		<div class="row-fluid">
@@ -50,7 +50,7 @@
 				{% if articlelist %}
 				<h2><small>Stories from this event</small></h2>
 					{% for all in articlelist %}				
-					<h3><a href="/articles/{{a.slug}}">{{ all.headline }}</a></h3>
+					<h3><a href="/articles/{{all.slug}}">{{ all.headline }}</a></h3>
 					<p>{{ all.description|safe }}
 					<hr />
 					{% endfor %}
@@ -61,9 +61,21 @@
 				<p style="color: red;">
 				Please correct the error{{ form.errors|pluralize }} below.
 				</p>
+				<ul>
+
+				<p style="color: red;">{{ form.event_type.errors.as_text }}</p>
+				<p style="color: red;">{{ form.email.errors.as_text }}</p>
+				<p style="color: red;">{{ form.byline.errors.as_text }}</p>
+				<p style="color: red;">{{ form.headline.errors.as_text }}</p>
+				<p style="color: red;">{{ form.hyperlink.errors.as_text }}</p>
+				<p style="color: red;">{{ form.pub_date.errors.as_text }}</p>
+				<p style="color: red;">{{ form.event_date.errors.as_text }}</p>
+				<p style="color: red;">{{ form.story_summary.errors.as_text }}</p>
+
+				</ul>
 				{% endif %}
 
-				<form class="well btn-inverse" action="" method="post">{% csrf_token %}
+				<form action="" method="post">{% csrf_token %}
 
 
 
