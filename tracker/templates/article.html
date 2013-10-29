@@ -25,7 +25,7 @@
 	                <p>{{ a.description|safe }}<br />
 	                <em>IRE contributed:{% for impact in a.impact.all %} <a href="/impacts/{{ impact.slug }}"> {{ impact.name|lower }}</a>{% if not forloop.last %}, {% endif %} {% endfor %}</em>
 	                </p>
-	                <hr />
+	                {% if not forloop.last %}<hr />{% endif %}
 	            	</div>
 	            </div>
 	            {% endfor %}
