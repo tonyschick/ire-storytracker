@@ -1,39 +1,8 @@
 {% extends "base.html" %}
 {% load humanize %}
+    
+{% block body %}
 
-{% block title %}
-<div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        
-        <div class="container">
-            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="http://ire.org"><img width="140" style="float: left; margin-top: 2px; margin-left: 3px; margin-right: 40px;" src="http://ire.org/media/images/irelogo.png" /></a>
-                    <a class="brand" href="/">Powering investigations</a>
-                    <div class="nav-collapse collapse" id="collapse">
-                    <ul class="nav">
-                    <li><a href="/impacts/">What we do</a></li>
-                    <li><a href="/training/">Where we train</a></li>
-                    <li><a href="/articles/">Stories we aided</a></li>
-                    <li><a href="/share/">Share with us</a></li>
-                    <li><a href="http://ire.org/donate">Support IRE</a></li>
-                </ul>
-            </div><!--/.nav-collapse -->
-        </div>
-      </div>
-</div>
-<script type="text/javascript" src="https://s3.amazonaws.com/ire-static/bootstrap-collapse.js"></script>
-<script>
-    $('#collapse').collapse()
-</script>
-
-<br />
-<br />
-<br />
 <div class="row-fluid">
             <div class="span2 offset2" style="background-color: #000; color: #ccc;">
                 <h1 style="text-align: center;"> {{ trainingtotal|intcomma }} </h1>
@@ -56,20 +25,11 @@
         <p class="lead" style="margin-top: -20px;">IRE's training and tools contribute to investigative reporting around the world. Explore a sample of where we've held training and what stories have been done with IRE's help.</p>
     </div>
 </div>
-
-
-
-
-{% endblock %}
-
-    
-{% block body %}
-
     <div class="row-fluid">
                 <div class="span6 offset1">
                     <div class="page-header">
                         <h3>Where we've been</h3>
-                        <p style="margin-top: -10px;">Drag or zoom to see locations in your community or abroad since 2008. Click on an icon for details or <a href="/training/">view the map in full screen</a>.</p>
+                        <p style="margin-top: -10px;">Drag or zoom to see locations in your community or abroad since 2008. Click on an icon for details or <a href="/training/">view a larger, fuller version of the map</a>.</p>
                     </div>
                     <div id="map" style="height:400px; width:100%; box-shadow: 4px 4px 5px #ccc;">
 

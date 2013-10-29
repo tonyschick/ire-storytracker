@@ -16,7 +16,6 @@
 		<link rel="stylesheet" type="text/css" href="https://s3.amazonaws.com/ire-static/bootstrap-responsive.css" />
 		<link rel="stylesheet" type="text/css" href="https://s3.amazonaws.com/ire-static/bootstrap.css" />
 		<script src="https://s3.amazonaws.com/ire-static/bootstrap.min.js"> </script>
-		<script type="text/javascript" src="https://s3.amazonaws.com/ire-static/bootstrap-collapse.js"></script>
 
 		<!-- JQUERY -->
 		<script src="https://s3.amazonaws.com/schick-static/jquery-1.9.1.min.js" > </script>
@@ -37,8 +36,8 @@
 			
 			body { 
 				height: 100%; 
-				margin: 0; 
-				padding: 0;
+				/* margin: 0; 
+				padding: 0; */
 			}
 
 			.info {
@@ -105,12 +104,9 @@
 </div>
 <script type="text/javascript" src="https://s3.amazonaws.com/ire-static/bootstrap-collapse.js"></script>
 <script>
-    $('#collapse').collapse()
+    $(".collapse").collapse('toggle')
 </script>
-
-		<!--SIDEBAR-->
 		{% endblock %}
-
 		{% block body %}
 			<div class="container">
 				<p>This is what base.html looks like.</p>
@@ -127,4 +123,15 @@
 		}(document, 'script', 'facebook-jssdk'));</script>
 	</body>
 {% endblock %}
+<div class="row-fluid">
+	<div class="span8 offset2">
+	<hr />
+	<center>
+	<p>Created by Investigative Reporters and Editors, Inc.<br />
+	141 Neff Annex, Columbia, MO 65203<br />
+	<a href="mailto:info@ire.org">Contact us</a>
+	</p>
+	</center>
+	</div>
+</div>
 </html>

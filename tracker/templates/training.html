@@ -1,38 +1,17 @@
 <!-- ##### TRAINING ##### -->
 {% extends "base.html" %}
 
-{% block title %} 
-<div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <a href="http://ire.org"><img width="140" style="float: left; margin-top: 2px; margin-left: 3px; margin-right: 40px;" src="http://ire.org/media/images/irelogo.png" /></a>
-        <div class="container">
-            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <div id="mapview" class="nav-collapse collapse">
-                <ul class="nav">
-                    <li><a class="brand" href="/">Powering investigations</a></li>
-                    <li><a href="/impacts/">What we do</a></li>
-                    <li><a href="/training/">Where we train</a></li>
-                    <li><a href="/articles/">Stories we aided</a></li>
-                    <li><a href="/share/">Share with us</a></li>
-                    <li><a href="http://ire.org/donate">Support IRE</a></li>
-                </ul>
-            </div><!--/.nav-collapse -->
-        </div>
-      </div>
-</div>
 
-{% endblock %}
 {% block body %}
+
+
+
 <div class="row-fluid">
-	<div class="span10 offset1" style="margin-top: 40px; padding-top: -40px">
+	<div class="span10 offset1">
+
     <div id="map"  style="margin-top: 40px; padding-top: -40px; height: 500px; box-shadow: 4px 4px 5px #ccc;">
 
-                        <script src='/mapjson/'></script>
+                        <!--script src='/mapjson/'></script-->
                         <script type="text/javascript">
 
                             var workshops = new L.LayerGroup();
@@ -40,52 +19,43 @@
                             var bootcamps = new L.LayerGroup();
                             var customtraining = new L.LayerGroup();
 
-                            var map = L.map('map').setView([34.972180,-66.316170], 4);
-                            L.tileLayer('http://a.tiles.mapbox.com/v3/tonyschick.map-gr9odw8f/{z}/{x}/{y}.png', {
+                            var map = L.map('map',
+                                {scrollWheelZoom: false},
+                                {layers: [workshops, conferences, bootcamps, customtraining]}).setView([34.972180,-66.316170], 4);
+
+                            var basemap = L.tileLayer('http://a.tiles.mapbox.com/v3/tonyschick.map-gr9odw8f/{z}/{x}/{y}.png', {
                                 maxZoom: 18,
                                 attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
                             }).addTo(map);
 
-                            /* var coordinates = data.features.geometry.coordinates;
+                            {% for t in training_long %}
+                            
+                            {% if t.type.id == 1 %}
+                            L.marker([{{t.lat}}, {{t.lng}}]).addTo(map).bindPopup('<a href="/training/{{t.slug}}/">{{t.date.year}} {{ t.type }} in {{ t.city }}</a>').addTo(workshops);
+                            {% elif t.type.id == 2 %}
+                            L.marker([{{t.lat}}, {{t.lng}}]).addTo(map).bindPopup('<a href="/training/{{t.slug}}/">{{t.date.year}} {{ t.type }} in {{ t.city }}</a>').addTo(workshops);
+                            {% elif t.type.id == 3 %}
+                            L.marker([{{t.lat}}, {{t.lng}}]).addTo(map).bindPopup('<a href="/training/{{t.slug}}/">{{t.date.year}} {{ t.type }} in {{ t.city }}</a>').addTo(bootcamps);
+                            {% elif t.type.id == 4 %}
+                            L.marker([{{t.lat}}, {{t.lng}}]).addTo(map).bindPopup('<a href="/training/{{t.slug}}/">{{t.date.year}} {{ t.type }} in {{ t.city }}</a>').addTo(bootcamps);
+                            {% elif t.type.id == 5 %}
+                            L.marker([{{t.lat}}, {{t.lng}}]).addTo(map).bindPopup('<a href="/training/{{t.slug}}/">{{t.date.year}} {{ t.type }} in {{ t.city }}</a>').addTo(conferences);
+                            {% elif t.type.id == 6 %}
+                            L.marker([{{t.lat}}, {{t.lng}}]).addTo(map).bindPopup('<a href="/training/{{t.slug}}/">{{t.date.year}} {{ t.type }} in {{ t.city }}</a>').addTo(conferences);
+                            {% elif t.type.id == 7 %}
+                            L.marker([{{t.lat}}, {{t.lng}}]).addTo(map).bindPopup('<a href="/training/{{t.slug}}/">{{t.date.year}} {{ t.type }} in {{ t.city }}</a>').addTo(customtraining);
+                            {% endif %}
+                            {% endfor %}
 
-                            L.marker([coordinates]).addTo(map);
 
-                            L.geoJson(someFeatures).addTo(map);
+                            var overlays = {
+                                "Workshops": workshops,
+                                "Boot camps": bootcamps,
+                                "Conferences": conferences,
+                                "Custom trainings": customtraining
+                            };
 
-                            */
-                            function getPoints(selectObj) {
-                                    removeMarkers();
-                                    var markers = [];
-                                    $.getJSON('/mapjson/', function(data) {
-                                        for (var i = 0; i < data.length; i++) 
-                                            {
-
-                                                
-                                                markers.push(L.marker([data[i].lat, data[i].lng]).bindPopup(
-                                                    "<b>" + data[i].year + ' ' + data[i].type + ' in ' + data[i].city +  '</b>'+ '<br />' +  '<em> Hosted by ' + data[i].host + '</em>' + '<br />' + '<br />' + '<a href="/training/' + data[i].slug + '">' + '<b>' + 'Learn more about this training' + '</a>' + '</b>'));
-                                            
-                                            //html += '<div class="item">' + '<a href="' + link + '" target="_blank">' + text + '</a></div>';
-                                                 
-                                        }
-
-                                        var markerLayer = L.layerGroup(markers);
-                                        map.addLayer(markerLayer);
-                                        activelayers.push(markerLayer);
-
-                                        L.conrol.layers(markers).addTo(map);
-                                    }); 
-                                }
-
-                            var activelayers = [];
-
-                            function removeMarkers() {
-                                for (i=0;i<activelayers.length;i++) {
-                                    map.removeLayer(activelayers[i]);
-                                }
-                                activelayers=[];
-                            }
-
-                            getPoints();
+                            L.control.layers(null,overlays).addTo(map);
 
                             var legend = L.control({position: 'topright'});
 
@@ -93,12 +63,13 @@
 
                                 var div = L.DomUtil.create('div', 'info legend')
                                     div.innerHTML +=
-                                        ('<h3 style="font-family: Georgia;">IRE training</h3>' + '<p style="font-family: Georgia;">One of the primary purposes of IRE is educating fellow journalists in the latest techniques of finding, understanding and reporting on stories. We are proud to say we have crisscrossed the country with our seminars and workshops and have even reached overseas.</p>'/* + '<h4 style="font-family: Georgia;">Latest stops</h4>'{% for t in training %} + '<p style="font-family: Georgia;">{{t.date.month}}/{{t.date.day}}/{{t.date.year}}' + '<br />' + '<a href="/training/{{t.slug}}">{{t.type}} in {{t.city}} </a></p>'{% endfor %} */ );
+                                        ('<h3 style="font-family: Georgia;">IRE training</h3>' + '<p style="font-family: Georgia;">One of the primary purposes of IRE is educating fellow journalists in the latest techniques of finding, understanding and reporting on stories.</p><p style="font-family: Georgia;"> We are proud to say we have crisscrossed the country with our seminars and workshops and have even reached overseas. Click the layers button above to see different types of training.</p>'/* + '<h4 style="font-family: Georgia;">Latest stops</h4>'{% for t in training %} + '<p style="font-family: Georgia;">{{t.date.month}}/{{t.date.day}}/{{t.date.year}}' + '<br />' + '<a href="/training/{{t.slug}}">{{t.type}} in {{t.city}} </a></p>'{% endfor %} */ );
                                     
                                 return div;
                             };
 
                             legend.addTo(map);
+
 
 
 
