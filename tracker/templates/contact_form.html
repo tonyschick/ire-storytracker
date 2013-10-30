@@ -5,17 +5,9 @@
 
 <div class="row-fluid">
 	<div class="span8 offset2">
-<script>
-  $(function() {
-    $( ".datepicker" ).datepicker({
-      changeMonth: true,
-      changeYear: true,
-      yearRange: "1900:2014",
-      // You can put more options here.
+<link rel="stylesheet" type="text/css"  href="https://dl.dropboxusercontent.com/u/24686053/datepicker.css" />
+<script src="https://dl.dropboxusercontent.com/u/24686053/bootstrap-datepicker.js"></script>
 
-    });
-  });
-</script>
 
 <!-- AddThis Button BEGIN -->
 				<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
@@ -116,6 +108,16 @@ Please correct the error{{ form.errors|pluralize }} below:
 
 			</div>
 		</div>
+<script>
+    $( "#event_date" ).datepicker({
+    	 autoclose: true,
+    	 orientation: "auto"
+    });
+
+    $( "#pub_date" ).datepicker({
+    	 autoclose: true
+    });
+</script>
 {% endblock %}
 
 

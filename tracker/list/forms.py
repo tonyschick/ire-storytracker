@@ -18,6 +18,6 @@ class ContactForm(forms.Form):
 	byline = forms.CharField(required=False)
 	headline = forms.CharField(required=False)
 	hyperlink = forms.URLField(initial='http://', required=False)
-	pub_date = forms.DateField(initial='mm/dd/yyyy', required=False)
-	event_date = forms.DateField(initial='mm/dd/yyyy', required=False)
+	pub_date = forms.DateField(initial='mm/dd/yyyy', required=False, widget=forms.DateInput(attrs={'id': 'pub_date'}))
+	event_date = forms.DateField(initial='mm/dd/yyyy', required=False, widget=forms.DateInput(attrs={'id': 'event_date'}))
 	story_summary = forms.CharField(widget=forms.Textarea(attrs={'style': 'width:500px'}), required=False)
